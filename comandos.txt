@@ -1,0 +1,32 @@
+# Comentário
+
+/*
+
+	Comentário em bloco
+
+*/
+
+/*
+
+	Criando o database
+
+*/
+
+create database dbFilmesTurmaB;
+
+
+/*
+
+	Perimite visualizar os databases existentes no BD
+
+*/
+
+show databases;
+
+/*
+
+	Eliminar/Apagar um database do BD
+    
+*/
+
+drop database dbFilmesTurmaB;
