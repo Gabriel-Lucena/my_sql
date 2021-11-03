@@ -129,7 +129,7 @@ create table tblNacionalidade (
 
 /*
 
-	tabela filme
+	Tabela filme
 
 */
 
@@ -145,7 +145,7 @@ create table tblFilme (
     fotoFilme varchar(80),
     idClassificacao int not null,
     
-    /* Defini um nome do relacionamento */
+    /* Define um nome do relacionamento */
     
     constraint FK_Classificacao_Filme
     
@@ -159,3 +159,80 @@ create table tblFilme (
     unique index (idFilme)
     
 );
+
+
+/*
+
+	Tabela diretor
+
+*/
+
+create table tblDiretor (
+	
+    idDiretor int not null auto_increment primary key,
+    nomeDiretor varchar(80) not null,
+    dataNascimentoDiretor date not null,
+    nomeArtisticoDiretor varchar(80),
+    biografiaDiretor text,
+    foto varchar(80),
+	idSexo int not null,
+    
+    /* Define um nome do relacionamento */
+    
+    constraint FK_Sexo_Diretor
+    
+    /* Especifica quem será a FK nesta tabela */
+    
+    foreign key (idSexo)
+    
+    /* Especifica de qual tabela virá a PK */
+    
+    references tblSexo (idSexo),
+    unique index (idDiretor)
+
+);
+
+/*
+
+	Tabela Filme Diretor
+
+*/
+
+create table tblFilmeDiretor (
+
+	idFilmeDiretor int not null auto_increment primary key,
+    idFilme int not null,
+    idDiretor int not null,
+    
+    /* Relacionamento com Filme */
+    
+		/* Define um nome do relacionamento */
+		
+		constraint FK_Filme_FilmeDiretor
+		
+		/* Especifica quem será a FK nesta tabela */
+		
+		foreign key (idFilme)
+		
+		/* Especifica de qual tabela virá a PK */
+		
+		references tblFilme (idFilme),
+
+	/* Relacionamento com Diretor */
+    
+		/* Define um nome do relacionamento */
+		
+		constraint FK_Diretor_FilmeDiretor
+        
+		/* Especifica quem será a FK nesta tabela */
+
+		foreign key (idDiretor)
+        
+		/* Especifica de qual tabela virá a PK */
+
+		references tblDiretor (idDiretor),
+        
+		unique index (idFilmeDiretor)
+
+);
+
