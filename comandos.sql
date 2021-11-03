@@ -236,3 +236,114 @@ create table tblFilmeDiretor (
 
 );
 
+
+/*
+
+	Tabela Ator - Simulando erros
+
+*/
+
+create table tblAtor (
+	
+    idAtor int not null auto_increment primary key,
+    
+    /* varchar(80) not null */
+    
+    nomeAtor varchar(8),
+    
+    nomeArtisticoAtor varchar(80),
+    
+    /* dataNascimentoAtor */
+    
+    dataNascAtor date not null,
+    
+	dataFalecimentoAtor date,
+    biografiaAtor text,
+    /* fotoAtor varchar(80),*/
+    idSexo int not null,
+    unique index(idAtor)
+    
+);
+
+/*
+
+	Alterando a estrutura de uma tabela já criada
+
+*/
+
+/*
+
+	modify column - permite alterar as propriedades de um atributo
+
+*/
+
+
+alter table tblAtor
+
+	modify column nomeAtor varchar (80) not null;
+
+desc tblAtor;
+
+/*
+
+	change column - permite alterar a escrita e propriedades de um atributo
+
+*/
+
+alter table tblAtor
+	
+    change column dataNascAtor dataNascimentoAtor date not null;
+
+/*
+
+	add column - permite adicionar um atributo
+
+*/
+
+alter table tblAtor
+	
+    add column fotoAtor varchar(80);
+
+/*
+
+	add constraint - permite adicionar um relacionamento em uma tabela já criada
+
+*/
+
+alter table tblAtor
+
+    add constraint FK_Sexo_Ator
+    foreign key (idSexo)
+    references tblSexo (idSexo);
+
+
+/*
+
+	Adicionando uma nova unique index()
+
+*/
+
+alter table tblAtor
+
+	add unique index(idAtor, foto);
+    
+/*
+
+	drop foreign key - desrelacionando a chave
+
+*/
+
+alter table tblAtor
+
+	drop foreign key FK_sexo_ator;
+
+
+/*
+
+	drop column - excluir atributo
+
+*/
+
+alter table tblAtor
+
+	drop column idSexo;
