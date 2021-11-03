@@ -385,3 +385,31 @@ alter table tblAtor
 */
 
 drop table tblAtor;
+
+/*
+
+
+
+*/
+
+create table tblEstudioFilme (
+
+	idEstudioFilme int not null auto_increment primary key,
+    idFilme int not null,
+    idEstudio int not null,
+    
+    /* Relacionamento com tblFilme */
+    
+    constraint FK_filme_estudioFilme
+    foreign key (idFilme)
+    references tblFilme (idFilme),
+    
+    /* Relacionamento com tblEstudio */
+
+    constraint FK_estudio_estudioFilme
+    foreign key (idEstudio)
+    references tblEstudio (idEstudio),
+    
+    unique index (idEstudioFilme)
+
+);
