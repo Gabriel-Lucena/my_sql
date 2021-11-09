@@ -89,3 +89,13 @@ insert into tblFilmeGenero (idFilme, idGenero)
 								(2, 2),
                                 (2, 3),
                                 (2, 4);
+           
+/*
+
+	update
+
+*/
+
+update tblFilme set duracaoFilme = '03:00:00' where idFilme = 1;
+
+select * from tblFilme;
