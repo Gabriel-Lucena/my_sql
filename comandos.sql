@@ -388,7 +388,7 @@ drop table tblAtor;
 
 /*
 
-
+	tabela estudio filme
 
 */
 
@@ -413,3 +413,182 @@ create table tblEstudioFilme (
     unique index (idEstudioFilme)
 
 );
+
+/*
+
+	tabela filmeGenero
+
+*/
+
+create table tblFilmeGenero (
+
+	idFilmeGenero int not null auto_increment primary key,
+    idFilme int not null,
+    idGenero int not null,
+    
+    /* Relacionamento com tblFilme */
+    
+    constraint FK_filme_filmeGenero
+    foreign key (idFilme)
+    references tblFilme (idFilme),
+    
+    /* Relacionamento com tblEstudio */
+
+    constraint FK_genero_generoFilme
+    foreign key (idGenero)
+    references tblGenero (idGenero),
+    
+    unique index (idFilmeGenero)
+    
+);
+
+/*
+
+	tabela atorFilme
+
+*/
+
+create table tblAtorFilme (
+
+	idAtorFilme int not null auto_increment primary key,
+    idFilme int not null,
+    idAtor int not null,
+    
+    /* Relacionamento com tblFilme */
+    
+    constraint FK_ator_atorFilme
+    foreign key (idAtor)
+    references tblAtor (idAtor),
+    
+    /* Relacionamento com tblEstudio */
+
+    constraint FK_filme_atorFilme
+    foreign key (idFilme)
+    references tblFilme (idFilme),
+    
+    unique index (idAtorFilme)
+    
+);
+
+/*
+
+	tabela roteirista
+
+*/
+
+
+
+create table tblRoteirista (
+
+	idRoteirista int not null auto_increment primary key,
+    nomeRoteirista varchar(80) not null,
+    idSexo int not null,
+
+    constraint FK_sexo_roteirista
+    foreign key (idSexo)
+    references tblSexo (idSexo),
+    
+    unique index (idRoteirista)
+);
+
+/*
+
+	tabela filme roteirista
+
+*/
+
+create table tblFilmeRoteirista (
+
+	idFilmeRoteirista int not null auto_increment primary key,
+    idFIlme int not null,
+    idRoteirista int not null,
+    
+    constraint FK_filme_filmeroteirista
+    foreign key (idFilme)
+    references tblFilme (idFilme),
+    
+        
+	constraint FK_roteirista_filmeroteirista
+    foreign key (idRoteirista)
+    references tblRoteirista (idRoteirista),
+    
+    unique index (idFilmeRoteirista)
+
+);
+
+/*
+
+	tabela roteirista nacionalidade
+
+*/
+
+create table tblRoteiristaNacionalidade (
+
+	idRoteiristaNacionalidade int not null auto_increment primary key,
+    idNacionalidade int not null,
+    idRoteirista int not null,
+    
+    constraint FK_nacionalidade_roteiristanacionalidade
+    foreign key (idNacionalidade)
+    references tblNacionalidade (idNacionalidade),
+    
+        
+	constraint FK_roteirista_roteiristanacionalidade
+    foreign key (idRoteirista)
+    references tblRoteirista (idRoteirista),
+    
+    unique index (idRoteiristaNacionalidade)
+
+);
+
+/*
+
+	tabela ator nacionalidade
+
+*/
+
+create table tblAtorNacionalidade (
+
+	idAtorNacionalidade int not null auto_increment primary key,
+    idNacionalidade int not null,
+    idAtor int not null,
+    
+    constraint FK_nacionalidade_atornacionalidade
+    foreign key (idNacionalidade)
+    references tblNacionalidade (idNacionalidade),
+    
+        
+	constraint FK_ator_atornacionalidade
+    foreign key (idAtor)
+    references tblAtor (idAtor),
+    
+    unique index (idAtorNacionalidade)
+
+);
+
+/*
+
+	tabela diretor nacionalidade
+
+*/
+
+create table tblDiretorNacionalidade (
+
+	idDiretorNacionalidade int not null auto_increment primary key,
+    idNacionalidade int not null,
+    idDiretor int not null,
+    
+    constraint FK_nacionalidade_diretornacionalidade
+    foreign key (idNacionalidade)
+    references tblNacionalidade (idNacionalidade),
+    
+        
+	constraint FK_diretor_diretornacionalidade
+    foreign key (idDiretor)
+    references tblDiretor (idDiretor),
+    
+    unique index (idDiretorNacionalidade)
+    
+);
+
+show tables;
