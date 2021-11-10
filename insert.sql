@@ -99,3 +99,39 @@ insert into tblFilmeGenero (idFilme, idGenero)
 update tblFilme set duracaoFilme = '03:00:00' where idFilme = 1;
 
 select * from tblFilme;
+
+
+/*
+
+	delete de chave estrangeira
+
+*/
+
+delete from tblGenero
+	where idGenero = 1;
+
+/*
+
+	Inserindo outro gênero
+
+*/
+
+insert into tblGenero (nomeGenero)
+				values('Romance');
+
+/*
+
+	Verificando
+
+*/
+
+select * from tblGenero;
+
+/*
+
+	Deletando
+
+*/
+
+delete from tblGenero
+	where idGenero = 8;
