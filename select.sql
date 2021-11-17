@@ -277,3 +277,8 @@ select sum(quantidadeFilme) as totalFilme from tblFilme;
 */
 
 select round(avg(quantidadeFilme), 0) as mediaFilme from tblFilme;
+
+
+select * from tblFilme;
+
+select * from tblSexo;
