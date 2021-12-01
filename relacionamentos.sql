@@ -64,34 +64,118 @@ select tblFilme.nomeFilme,
 		right join tblGenero
 			on tblGenero.idGenero = tblFilmeGenero.idGenero;
 
+/*
+
+	Aplicando full join no mysql - como o mysql não possui o comando full join,
+    para representar esse resultado é necessário utilizar o comando union ( o
+    comando union para unir dois ou mais scripts de select). Criamos um select 
+    apenas com o left join e unimos com outro select com o right join.
+
+*/
 
 select tblFilme.nomeFilme,
 		tblFilme.duracaoFilme,
         tblFilme.dataLancamentoFilme,
         tblGenero.nomeGenero
 
-		from tblFilme inner join tblFilmeGenero
+		from tblFilme right join tblFilmeGenero
 			on tblFilme.idFilme = tblFilmeGenero.idFilme
-		inner join tblGenero
+		right join tblGenero
+			on tblGenero.idGenero = tblFilmeGenero.idGenero
+
+union
+
+select tblFilme.nomeFilme,
+		tblFilme.duracaoFilme,
+        tblFilme.dataLancamentoFilme,
+        tblGenero.nomeGenero
+
+		from tblFilme left join tblFilmeGenero
+			on tblFilme.idFilme = tblFilmeGenero.idFilme
+		left join tblGenero
 			on tblGenero.idGenero = tblFilmeGenero.idGenero;
+
+/*
+
+	
+
+*/
 
 select * from tblFilmeGenero;
 
+show tables;
+
+select tblFilme.nomeFilme,
+		tblFilme.nomeOriginalFilme,
+		tblclassificacao.nomeClassificacao,
+        tblGenero.nomeGenero,
+        tblAtor.nomeArtisticoAtor
+
+        
+
+		from tblFilme inner join tblFilmeGenero
+			on tblFilme.idFilme = tblFilmeGenero.idFilme
+		inner join tblGenero
+			on tblGenero.idGenero = tblFilmeGenero.idGenero
+            
+		inner join tblClassificacao
+			on tblClassificacao.idClassificacao = tblFilme.idClassificacao
+            
+		inner join tblatorfilme
+			on tblfilme.idfilme = tblatorfilme.idfilme
+		inner join tblator
+			on tblator.idator = tblatorfilme.idator
+		
+        order by nomeArtisticoAtor;
+            
+select * from tblator;
+
+insert into tblgenero (nomeGenero) values ('Histórico');
+
+select * from tblfilmegenero;
+
+insert into tblfilmegenero (idFilme, idGenero) values (4,1), (4,9);
+
+select * from tblClassificacao;
+select * from tblfilme;
+
+select * from tblatorfilme;
+
+select tblfilme.nomefilme,
+		tblclassificacao.nomeclassificacao,
+        tblgenero.nomegenero
+
+			from tblFilme inner join tblClassificacao
+			on tblFilme.idClassificacao = tblClassificacao.idClassificacao
+            inner join tblfilmegenero
+            on tblgenero.idgenero = tblfilmegenero.idgenero;
+            
+select * from tblfilmegenero;
 
 
+/**/
 
-
-
-
-
-
-
-
-
-
-
-
-
+select tblFilme.nomeFilme,
+		tblFilme.nomeOriginalFilme,
+        tblClassificacao.nomeClassificacao,
+        tblGenero.nomeGenero,
+        tblAtor.nomeAtor
+        
+        from tblClassificacao inner join tblfilme
+			on tblCLassificacao.idClassificacao = tblFilme.idClassificacao
+        inner join tblfilmegenero
+			on tblFilme.idFilme = tblFilmeGenero.idFilme
+		inner join tblGenero
+			on tblGenero.idGenero = tblFilmeGenero.idGenero
+		inner join tblAtorFilme
+			on tblFilme.idFilme = tblAtorFilme.idFilme
+		inner join tblAtor
+			on tblAtor.idAtor = tblAtorFilme.idAtor
+            
+		where year(tblAtor.dataNascimentoAtor) >= '1965'
+        
+        order by tblAtor.nomeArtisticoAtor asc;
+        
 
 
 
