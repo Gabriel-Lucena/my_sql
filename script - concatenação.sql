@@ -114,12 +114,6 @@ select replace(sinopseFilme, ' a ', ' <s>а</s> ') as resultado
 
 */
 
-alter table tblFilme
-	add column valor float;
-
-alter table tblFilme
-	change valor valorFilme float;
-
 /*
 
 	Mostrando o preço total dos filmes
