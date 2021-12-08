@@ -131,3 +131,11 @@ alter view vwListaFilme as
 */
 
 drop view vwListaFilme;
+
+/*
+
+	Permite visualizar a estrutura de criação da view (select que foi criado)
+
+*/
+
+show create view vwListaFilme;
